@@ -1,0 +1,18 @@
+.card img {
+  height: 250px;
+}
+.card {
+  cursor: pointer;
+}
+#displayData {
+  width: 90%;
+  margin: auto;
+}
+
+#fullDisplayImage img {
+  height: 400px;
+}
+
+#fullCard {
+  padding: 20px;
+}
