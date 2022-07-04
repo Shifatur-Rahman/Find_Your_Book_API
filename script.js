@@ -25,7 +25,7 @@ let displayLoadBook = (temp) => {
     error.innerText = "Item not Found";
   } else {
     for (let singleItem of temp) {
-      console.log(singleItem);
+      // console.log(singleItem);
       let div = document.createElement("div");
       div.classList.add("card");
       div.innerHTML = `
@@ -52,18 +52,15 @@ let displayLoadBook = (temp) => {
 //  detailsBook
 
 let detailsBook = (details) => {
-  // let url = `https://www.googleapis.com/books/v1/volumes?q=${details}`;
   let url = `${details}`;
-  console.log(url);
+  // console.log(url);
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayDetailsBook(data));
 };
 let fullDisplayImage = document.getElementById("fullDisplayImage");
 let displayDetailsBook = (bookApiData) => {
-  console.log(bookApiData);
-
-  // console.log(singleUser);
+  // console.log(bookApiData);
   fullDisplayImage.innerHTML = `
   <div id="fullCard" class="card">
   <img src="${bookApiData.volumeInfo.imageLinks.thumbnail}" class="card-img-top" alt="book image" />
@@ -79,25 +76,8 @@ let displayDetailsBook = (bookApiData) => {
   `;
 };
 
-// for (let singleTemp of temp) {
-//   console.log(singleTemp);
-//   fullDisplayImage.innerHTML = `
-//   <div class="card">
-//   <img src="${singleTemp.volumeInfo.imageLinks.thumbnail}" class="card-img-top" alt="book image" />
-//   <h5 class="card-title">${singleTemp.id}</h5>
-//    <h5 class="card-title">${singleTemp.volumeInfo.title}</h5>
-//    <h5 class="card-title">${singleTemp.volumeInfo.authors}</h5>
-//    <h5 class="card-title">${singleTemp.volumeInfo.publishedDate}</h5>
-
-//    <p class="card-text">
-//    ${singleTemp.volumeInfo.description}
-//    </p>
-// </div>
-
-//   `;
-// }
-{
-  /*  */
-}
-
-// for (let singleUser of Object.values(bookApiData)) {}
+// PreLoader
+let loader = document.getElementById("preLoader");
+window.addEventListener("load", function () {
+  loader.style.display = "none";
+});
