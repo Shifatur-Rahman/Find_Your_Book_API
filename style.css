@@ -1,10 +1,11 @@
 #preLoader {
-  background: #000 url(images/preloader-circle.gif) no-repeat center;
-  background-size: 18%;
+  background: #fff url(images/Loading_icon.gif) no-repeat center center;
+  background-size: 40%;
   height: 100vh;
   width: 100%;
   position: fixed;
   z-index: 100;
+  display: none;
 }
 
 .card img {

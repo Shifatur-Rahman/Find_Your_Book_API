@@ -3,8 +3,11 @@ let submitBtn = document.getElementById("submitBtn");
 let error = document.getElementById("error");
 // data fetch from user request
 let loadBook = () => {
+  displayLoading();
   if (searchBook.value == "") {
     error.innerHTML = "Search box must not be empty!";
+    displayData.innerHTML = "";
+    hideLoader();
   } else {
     error.innerHTML = "";
     let url = `https://www.googleapis.com/books/v1/volumes?q=${searchBook.value}`;
@@ -23,28 +26,30 @@ let displayLoadBook = (temp) => {
   // console.log(dataItem);
   if (temp == undefined) {
     error.innerText = "Item not Found";
+    displayData.innerHTML = "";
+    hideLoader();
   } else {
+    error.innerHTML = "";
     for (let singleItem of temp) {
       // console.log(singleItem);
       let div = document.createElement("div");
       div.classList.add("card");
       div.innerHTML = `
       <div onclick="detailsBook('${singleItem.selfLink}')" class="card-body">
-       <img src="${
-         singleItem.volumeInfo.imageLinks.thumbnail
-       }" class="card-img-top" alt="book image" />
+       <img src="${singleItem.volumeInfo.imageLinks.thumbnail}" class="card-img-top" alt="book image" />
        <h5 class="card-title">${singleItem.id}</h5>
         <h5 class="card-title">${singleItem.volumeInfo.title}</h5>
         <h5 class="card-title">${singleItem.volumeInfo.authors}</h5>
         <h5 class="card-title">${singleItem.volumeInfo.publishedDate}</h5>
     
         <p class="card-text">
-        ${singleItem.volumeInfo.description.slice(0, 150)}
+        ${singleItem.volumeInfo.description}
         </p>
       </div>
     
       `;
       displayData.appendChild(div);
+      hideLoader();
     }
   }
 };
@@ -52,6 +57,7 @@ let displayLoadBook = (temp) => {
 //  detailsBook
 
 let detailsBook = (details) => {
+  displayLoading();
   let url = `${details}`;
   // console.log(url);
   fetch(url)
@@ -74,10 +80,23 @@ let displayDetailsBook = (bookApiData) => {
 </div>
 
   `;
+  hideLoader();
 };
 
 // PreLoader
 let loader = document.getElementById("preLoader");
+// window preLoader
 window.addEventListener("load", function () {
   loader.style.display = "none";
 });
+
+// display preloader
+function displayLoading() {
+  loader.style.display = "block";
+}
+
+//hide preloader
+
+function hideLoader() {
+  loader.style.display = "none";
+}
