@@ -7,6 +7,7 @@ let loadBook = () => {
   if (searchBook.value == "") {
     error.innerHTML = "Search box must not be empty!";
     displayData.innerHTML = "";
+    fullDisplayImage.innerHTML = "";
     hideLoader();
   } else {
     error.innerHTML = "";
@@ -27,6 +28,7 @@ let displayLoadBook = (temp) => {
   if (temp == undefined) {
     error.innerText = "Item not Found";
     displayData.innerHTML = "";
+    fullDisplayImage.innerHTML = "";
     hideLoader();
   } else {
     error.innerHTML = "";
